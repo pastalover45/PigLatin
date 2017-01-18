@@ -30,20 +30,28 @@ public String pigLatin(String sWord)
 //precondition: sWord is a valid String of length greater than 0
 //postcondition: returns the pig latin equivalent of sWord
 {
-
+	//For words that are all consonants, simply add "ay" to the end of the word. Thus, "try" becomes "tryay".
 	if(findFirstVowel(sWord) == -1)
 	{
 		return sWord + "ay";
 	}
 
+	//For words that begin with vowels, simply add "way" to the end of the word. Thus, "a" becomes "away"; "at" becomes "atway"; "ermine" becomes "ermineway."
 	if(findFirstVowel(sWord) == 0)
 	{
 
 		return sWord + "way";
 	}
 
+	//For words beginning with "qu," move the "qu" to the end of the word and add ay. Thus "question" becomes "estionquay".
 	if(sWord.substring(0.2).equals("qu")){
+		//move the "qu" to the end of the word and add ay
+		quay = sWord.substring(0,2); +"ay";
+		leftoverword= sWord.substring(2,sWord.length());
+		newWord= leftoverword + quay;
+
 		
+		return newWord; 
 
 	}
 
