@@ -3,15 +3,18 @@ import java.util.*;
 public void setup() {
 	String lines[] = loadStrings("words.txt");
 	System.out.println("there are " + lines.length + " lines");
+	
 	for (int i = 0 ; i < lines.length; i++) {
 	  System.out.println(pigLatin(lines[i]));
-
 
 	}
 }
 public void draw()
 {
 }
+
+
+
 public int findFirstVowel(String sWord){
 //precondition: sWord is a valid String of length greater than 0.
 //postcondition: returns the position of the first vowel in sWord.  If there are no vowels, returns -1
@@ -24,6 +27,7 @@ public int findFirstVowel(String sWord){
 
  		 return -1;
 		
+	}
 }
 
 public String pigLatin(String sWord)
@@ -55,11 +59,23 @@ public String pigLatin(String sWord)
 
 	}
 
-
-	else
+	//For words that begin with consonants, move the leading consonant(s) to the end of the word and add "ay." Thus, "ball" becomes "allbay"; "button" becomes "uttonbay"; "star" becomes "arstay"; "three" becomes "eethray";
+	if(findFirstVowel(sWord) > 0)
 	{
-		return "ERROR!";
+		//move the leading consonant(s) to the end of the word
+		leadCon = sWord.substring(0,findFirstVowel(sWord));
+		leftoverword= sWord.substring(findFirstVowel(sWord),sWord.length());
+	
+		//and add "ay." 
+		newword = leftoverword + leadCon + "ay";
+
+
+		return newWord;
+
 	}
+
+		return "ERROR!";
+	
 }
 
 
